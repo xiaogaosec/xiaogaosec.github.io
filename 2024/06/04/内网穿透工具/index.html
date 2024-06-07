@@ -16,15 +16,15 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Frp是专注于内网穿透的高性能的反向代理应用，支持TCP、UDP、HTTP、HTTPS等多种协议。可以将内网服务以安全、便捷的方式通过具有公网IP节点的中转暴露到公网。项目下载：https:&#x2F;&#x2F;github.com&#x2F;fatedier&#x2F;frp #内网穿透C2上线1.服务端-下载-解压-修改-启动（阿里云主机记得修改安全组配置出入口）修改配置文件frps.ini：[common]bind_port &amp;">
+    <meta name="description" content="title: 委派安全 Frp是专注于内网穿透的高性能的反向代理应用，支持TCP、UDP、HTTP、HTTPS等多种协议。可以将内网服务以安全、便捷的方式通过具有公网IP节点的中转暴露到公网。项目下载：https:&#x2F;&#x2F;github.com&#x2F;fatedier&#x2F;frp #内网穿透C2上线1.服务端-下载-解压-修改-启动（阿里云主机记得修改安全组配置出入口）修改配置文件frps.ini：[common">
 <meta property="og:type" content="article">
 <meta property="og:title" content="xiaogao.Blogs">
 <meta property="og:url" content="http://example.com/2024/06/04/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E5%B7%A5%E5%85%B7/index.html">
 <meta property="og:site_name" content="xiaogao.Blogs">
-<meta property="og:description" content="Frp是专注于内网穿透的高性能的反向代理应用，支持TCP、UDP、HTTP、HTTPS等多种协议。可以将内网服务以安全、便捷的方式通过具有公网IP节点的中转暴露到公网。项目下载：https:&#x2F;&#x2F;github.com&#x2F;fatedier&#x2F;frp #内网穿透C2上线1.服务端-下载-解压-修改-启动（阿里云主机记得修改安全组配置出入口）修改配置文件frps.ini：[common]bind_port &amp;">
+<meta property="og:description" content="title: 委派安全 Frp是专注于内网穿透的高性能的反向代理应用，支持TCP、UDP、HTTP、HTTPS等多种协议。可以将内网服务以安全、便捷的方式通过具有公网IP节点的中转暴露到公网。项目下载：https:&#x2F;&#x2F;github.com&#x2F;fatedier&#x2F;frp #内网穿透C2上线1.服务端-下载-解压-修改-启动（阿里云主机记得修改安全组配置出入口）修改配置文件frps.ini：[common">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-06-04T02:49:57.353Z">
-<meta property="article:modified_time" content="2024-06-04T14:34:43.937Z">
+<meta property="article:modified_time" content="2024-06-07T10:56:59.768Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -272,7 +272,8 @@
             
               <div class="markdown-body">
                 
-                <p>Frp是专注于内网穿透的高性能的反向代理应用，支持TCP、UDP、HTTP、HTTPS等多种协议。可以将内网服务以安全、便捷的方式通过具有公网IP节点的中转暴露到公网。<br>项目下载：<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp">https://github.com/fatedier/frp</a></p>
+                <p>title: 委派安全</p>
+<p>Frp是专注于内网穿透的高性能的反向代理应用，支持TCP、UDP、HTTP、HTTPS等多种协议。可以将内网服务以安全、便捷的方式通过具有公网IP节点的中转暴露到公网。<br>项目下载：<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp">https://github.com/fatedier/frp</a></p>
 <p>#内网穿透C2上线<br>1.服务端-下载-解压-修改-启动（阿里云主机记得修改安全组配置出入口）<br>修改配置文件frps.ini：<br>[common]<br>bind_port &#x3D; 7000 公网服务器本地开一个7000端口<br>启动服务端：<br>.&#x2F;frps -c .&#x2F;frps.ini</p>
 <p>2.客户端-下载-解压-修改-启动<br>修改配置文件frpc.ini：<br>[common]<br>serverAddr &#x3D; “117.72.72.84”<br>serverPort &#x3D; 7000</p>
 <p>[[proxies]]<br>name &#x3D; “test-tcp”<br>type &#x3D; “tcp”9<br>localIP &#x3D; “127.0.0.1”<br>localPort &#x3D; 5555<br>remotePort &#x3D; 6666<br>remoteIP &#x3D; 117.72.72.84<br>启动客户端：<br> .&#x2F;frpc -c .&#x2F;frpc.ini</p>
