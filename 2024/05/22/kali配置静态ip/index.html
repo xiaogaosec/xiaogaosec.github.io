@@ -19,12 +19,12 @@
     <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2024/05/22/hello-world/index.html">
+<meta property="og:url" content="http://example.com/2024/05/22/kali%E9%85%8D%E7%BD%AE%E9%9D%99%E6%80%81ip/index.html">
 <meta property="og:site_name" content="xiaogao.Blogs">
 <meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-05-22T10:50:45.861Z">
-<meta property="article:modified_time" content="2024-05-22T10:50:45.861Z">
+<meta property="article:modified_time" content="2024-05-24T08:14:23.347Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          18 字
+          519 字
         
       </span>
     
@@ -230,7 +230,7 @@
         
         
         
-          1 分钟
+          5 分钟
         
       </span>
     
@@ -285,6 +285,25 @@
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>返回主页<br>首页<br>管理<br>Kali配置网卡静态信息<br>阅读目录</p>
+<p> 报错信息<br>临时配置ip</p>
+<p>ifconfig eth0 up              &#x2F;&#x2F;端口启用<br>ifconfig eth0 down            &#x2F;&#x2F;端口关闭<br>ifconfig eth0 192.168.1.10    &#x2F;&#x2F;只修改ip地址<br>ifconfig eth0 192.168.1.10&#x2F;24 或者 ifconfig eth0 1.1.1.1 netmask 255.0.0.0<br>临时修改路由</p>
+<p>route          &#x2F;&#x2F;查看路由表<br>netstat -rn    &#x2F;&#x2F;查看路由表<br>route del default eth0        &#x2F;&#x2F;删除eth0上的默认路由<br>route add default gw 192.168.1.1    &#x2F;&#x2F;添加默认路由<br>修改配置文件修改网卡信息</p>
+<p>复制代码<br>&#x2F;etc&#x2F;network&#x2F;interfaces</p>
+<p>auto lo<br>iface lo inet loopback<br>allow-hotplug eth0<br>iface eth0 inet dhcp</p>
+<p>iface eth0 inet6 auto</p>
+<p>修改为：</p>
+<p>auto lo<br>iface lo inet loopback<br>allow-hotplug eth0<br>auto eth0                 # 增加了该选项，因为使用networking restart时系统启动                            auto的网卡，如不加上则启动无反应<br>iface eth0 inet static    # 配置了static 为静态ip   |   自动获取 iface eth0 inet dhcp<br>address 192.168.1.4       # 设置ip地址<br>netmask 255.255.255.0     # 设置掩码<br>gateway 192.168.1.1       # 设置网关<br>dns-nameservers 223.5.5.5 # 错误的<br> iface eth0 inet6 auto # 可写可不写<br>复制代码<br> 终端命令行下重启网络：service networking restart或 &#x2F;etc&#x2F;init.d&#x2F;networking restart 。</p>
+<p>回到顶部<br> 报错信息<br>复制代码<br>root@bogon:<del># &#x2F;etc&#x2F;init.d&#x2F;networking restart<br>[….] Restarting networking (via systemctl): networking.serviceJob for networking.service failed because the control process exited with error code.<br>See “systemctl status networking.service” and “journalctl -xe” for details.<br> failed!<br>root@bogon:</del># vim &#x2F;etc&#x2F;network&#x2F;interfaces<br>root@bogon:~# systemctl status networking.service<br>● networking.service - Raise network interfaces<br>   Loaded: loaded (&#x2F;lib&#x2F;systemd&#x2F;system&#x2F;networking.service; enabled; vendor prese<br>   Active: failed (Result: exit-code) since Sun 2019-04-28 12:06:52 CST; 58s ago<br>     Docs: man:interfaces(5)<br>  Process: 6811 ExecStartPre&#x3D;&#x2F;bin&#x2F;sh -c if [ “$CONFIGURE_INTERFACES” !&#x3D; “no” ] &amp;<br>  Process: 6814 ExecStart&#x3D;&#x2F;sbin&#x2F;ifup -a –read-environment (code&#x3D;exited, status&#x3D;<br> Main PID: 6814 (code&#x3D;exited, status&#x3D;1&#x2F;FAILURE)</p>
+<p>4月 28 12:06:52 bogon systemd[1]: Starting Raise network interfaces…<br>4月 28 12:06:52 bogon ifup[6814]: Not enough information: “dev” argument is requ<br>4月 28 12:06:52 bogon ifup[6814]: ifup: failed to bring up eth0<br>4月 28 12:06:52 bogon systemd[1]: networking.service: Main process exited, code&#x3D;<br>4月 28 12:06:52 bogon systemd[1]: networking.service: Failed with result ‘exit-c<br>4月 28 12:06:52 bogon systemd[1]: Failed to start Raise network interfaces.<br>lines 1-14&#x2F;14 (END)<br>复制代码</p>
+<p>注意代码后面不能有注释，否则报错，需要把注释删除掉</p>
+<p>复制代码</p>
+<h1 id="This-file-describes-the-network-interfaces-available-on-your-system"><a href="#This-file-describes-the-network-interfaces-available-on-your-system" class="headerlink" title="This file describes the network interfaces available on your system"></a>This file describes the network interfaces available on your system</h1><h1 id="and-how-to-activate-them-For-more-information-see-interfaces-5"><a href="#and-how-to-activate-them-For-more-information-see-interfaces-5" class="headerlink" title="and how to activate them. For more information, see interfaces(5)."></a>and how to activate them. For more information, see interfaces(5).</h1><p>source &#x2F;etc&#x2F;network&#x2F;interfaces.d&#x2F;*</p>
+<h1 id="The-loopback-network-interface"><a href="#The-loopback-network-interface" class="headerlink" title="The loopback network interface"></a>The loopback network interface</h1><p>auto lo<br>iface lo inet loopback<br>auto eth0<br>iface eth0 inet static<br>address 192.168.2.135<br>netmask 255.255.255.0<br>gateway 192.168.2.1</p>
+<p>复制代码<br>修改dns配置文件</p>
+<p>缺点： 重启后会消失</p>
+<p>复制代码<br>&#x2F;etc&#x2F;resolv.conf<br>nameserver 202.106.0.20<br>nameserver 202.106.46.151</p>
+<p>修改为：<br>nameserver 202.106.0.20<br>nameserver 202.106.46.151<br>nameserver 8.8.8.8</p>
 
                 
               </div>
@@ -303,7 +322,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Hello World</div>
-      <div>http://example.com/2024/05/22/hello-world/</div>
+      <div>http://example.com/2024/05/22/kali配置静态ip/</div>
     </div>
     <div class="license-meta">
       
